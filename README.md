@@ -1,5 +1,6 @@
 # tecweb
 este será un repositorio en cual se subirán practicas 
 
-matricula del alumno : 202253882
-nombre del alumno : Angel Sarmiento Totolhua
+Matricula del alumno : 202253882
+Nombre del alumno : Angel Sarmiento Totolhua
+Materia : Tecnologias web
