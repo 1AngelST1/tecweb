@@ -64,6 +64,37 @@
         ?>
 
 
+<h1>Ejercicio 3: </h1>
+    <p>
+        Muestra el contenido de cada variable inmediatamente después de cada asignación,
+        verificar la evolución del tipo de estas variables (imprime todos los componentes de los
+        arreglo):
+    </p>
+    <p>
+        $q = “PHP5”;<br>
+        $w[] = &$q;<br>
+        $e = “5a version de PHP”;<br>
+        $r = $e*10;<br>
+        $q .= $e;<br>
+        $e *= $r;<br>
+        $w[0] = “MySQL”;<br>
+    </p>
+
+    <?php
+    $a = "PHP5";
+    $z[] = &$a; // $z[0] es una referencia a $a
+    $b = "5a version de PHP";
+    $c = $b * 10; // PHP convierte "5a version de PHP" en 5 y lo multiplica por 10
+    $a .= $b; // Concatena "5a version de PHP" a $a
+    $b *= $c; // Multiplica el valor de $b por $c
+    $z[0] = "MySQL"; // Cambia $z[0], lo cual también afecta a $a porque es una referencia
+
+    echo "a: $a <br>";
+    echo "b: $b <br>";
+    echo "c: $c <br>";
+    print_r($z);
+    ?>
+
 
 </body>
 </html>
