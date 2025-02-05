@@ -37,6 +37,33 @@
 
     ?>
 
+<h1>Ejercicio 2: </h1>
+    <p>Proporcionar los valores de $q, $w, $e como sigue:</p>
+    <p>cambie los valores de a,b,c por los valores q,w,e respectivamente por problemas con el siguiente ejercicio.</p>
+    <?php
+
+        $q = "ManejadorSQL";
+        $w = 'MySQL';
+        $e = &$q; // $c es una referencia a $a
+
+        echo "Valores iniciales:<br>";
+        echo "q: $q <br>";
+        echo "w: $w <br>";
+        echo "e: $e <br>";
+
+        $q = "PHP server"; 
+        $w = &$e; // Ahora $b también referencia $a
+
+        echo "Después de la reasignación:<br>";
+        echo "q: $q <br>";
+        echo "w: $w <br>";
+        echo "e: $e <br>";
+
+        echo "Al asignar e = q, e referencia el mismo valor que q,";
+        echo "por lo que cualquier cambio en a también afecta a e.";
+        ?>
+
+
 
 </body>
 </html>
