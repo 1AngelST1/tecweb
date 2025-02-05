@@ -134,6 +134,49 @@
     echo "c: $c <br>";
     ?>
 
+<h1>Ejercicio 6: </h1>
+    <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas
+    usando la función var_dump(<datos>).</p>
+    <p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e
+    en uno que se pueda mostrar con un echo:<br>
+    $a = “0”;<br>
+    $b = “TRUE”;<br>
+    $c = FALSE;<br>
+    $d = ($a OR $b);<br>
+    $e = ($a AND $c);<br>
+    $f = ($a XOR $b);<br>
+    </p>
+    <?php
+    $a = "0";
+    $b = "TRUE";
+    $c = FALSE;
+    $d = ($a OR $b);
+    $e = ($a AND $c);
+    $f = ($a XOR $b);
+
+    echo "a: "; var_dump((bool)$a); echo "<br>";
+    echo "b: "; var_dump((bool)$b); echo "<br>";
+    echo "c: "; var_dump((bool)$c); echo "<br>";
+    echo "d: "; var_dump((bool)$d); echo "<br>";
+    echo "e: "; var_dump((bool)$e); echo "<br>";
+    echo "f: "; var_dump((bool)$f); echo "<br>";
+
+    echo "<br> Convertidos a string:<br>";
+    echo "c: " . json_encode($c) . "<br>"; 
+    echo "e: " . json_encode($e) . "<br>";
+    
+    echo "la función json_encode() convierte valores booleanos en verdadero o falso como cadenas";
+    
+    ?>
+
+
+    <h1>Ejercicio 7:</h1>
+    <?php
+    echo "Versión de Apache y PHP: " . $_SERVER['SERVER_SOFTWARE'] . "<br>";
+    echo "Nombre del sistema operativo: " . PHP_OS . "<br>";
+    echo "Idioma del navegador: " . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "<br>";
+    ?>
+
 
 </body>
 </html>
