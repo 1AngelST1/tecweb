@@ -94,6 +94,45 @@
     echo "c: $c <br>";
     print_r($z);
     ?>
+    <h1>Ejercicio 4:</h1>
+    <p>
+    Lee y muestra los valores de las variables del ejercicio anterior, pero ahora con la ayuda de
+    la matriz $GLOBALS o del modificador global de PHP.
+    </p>
+    <?php
+    $GLOBALS['a'] = "PHP5";
+    $GLOBALS['z'][] = &$GLOBALS['a'];
+    $GLOBALS['b'] = "5a version de PHP";
+    $GLOBALS['c'] = $GLOBALS['b'] * 10;
+    $GLOBALS['a'] .= $GLOBALS['b'];
+    $GLOBALS['b'] *= $GLOBALS['c'];
+    $GLOBALS['z'][0] = "MySQL";
+
+    echo "a: " . $GLOBALS['a'] . "<br>";
+    echo "b: " . $GLOBALS['b'] . "<br>";
+    echo "c: " . $GLOBALS['c'] . "<br>";
+    print_r($GLOBALS['z']);
+    ?>
+
+
+    <h1>Ejercicio 5:</h1>
+    <p>
+    Dar el valor de las variables $a, $b, $c al final del siguiente script:<br>
+    $a = “7 personas”;<br>
+    $b = (integer) $a;<br>
+    $a = “9E3”;<br>
+    $c = (double) $a;<br>
+    </p>
+    <?php
+    $a = "7 personas";
+    $b = (integer) $a; // Convierte "7 personas" en 7 (descarta la parte de texto)
+    $a = "9E3"; // Representa 9000 en notación científica
+    $c = (double) $a; // Convierte "9E3" a 9000.0
+
+    echo "a: $a <br>";
+    echo "b: $b <br>";
+    echo "c: $c <br>";
+    ?>
 
 
 </body>
