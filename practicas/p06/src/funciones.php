@@ -41,5 +41,45 @@ function encontrarMultiplo($n) {
     return $random;
 }
 
+//problema 4
+
+function generarAbecedario() {
+    $arreglo = [];
+    for ($i = 97; $i <= 122; $i++) {
+        $arreglo[$i] = chr($i);
+    }
+    return $arreglo;
+}
+
+//problema 5
+
+function validarEdadSexo($edad, $sexo) {
+    if ($sexo === "femenino" && $edad >= 18 && $edad <= 35) {
+        return '<h3>Bienvenida, usted está en el rango de edad permitido.</h3>';
+    } else {
+        return '<h3>Lo sentimos, no cumple con los requisitos.</h3>';
+    }
+}
+
+
+//problema 6
+
+// funciones.php
+function auto_info($parqueVehicular, $matriculaConsulta) {
+    if (isset($parqueVehicular[$matriculaConsulta])) {
+        $vehiculo = $parqueVehicular[$matriculaConsulta];
+        $info = "<h3>Información del Vehículo:</h3>";
+        $info .= "<p><strong>Marca:</strong> " . $vehiculo['Auto']['marca'] . "</p>";
+        $info .= "<p><strong>Modelo:</strong> " . $vehiculo['Auto']['modelo'] . "</p>";
+        $info .= "<p><strong>Tipo:</strong> " . $vehiculo['Auto']['tipo'] . "</p>";
+        $info .= "<p><strong>Propietario:</strong> " . $vehiculo['Propietario']['nombre'] . "</p>";
+        $info .= "<p><strong>Ciudad:</strong> " . $vehiculo['Propietario']['ciudad'] . "</p>";
+        $info .= "<p><strong>Dirección:</strong> " . $vehiculo['Propietario']['direccion'] . "</p>";
+        return $info;
+    } else {
+        return "<p>No se encontró un vehículo con esa matrícula.</p>";
+    }
+}
+
 
 ?>
