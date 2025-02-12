@@ -102,7 +102,7 @@
         En caso contrario, deberá devolverse otro mensaje indicando el error.<br>
     </p>
 
-    <form method="post" action="http://localhost/tecweb/practicas/p06/index.php">
+    <form method="post" action="">
         edad: <input type="number" name="edad" required>
         sexo: <select name="sexo">
             <option value="femenino">Femenino</option>
