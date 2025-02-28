@@ -48,7 +48,7 @@
                             <td> <?= htmlspecialchars($producto['unidades']) ?> </td>
                             <td><img src="<?= htmlspecialchars($producto['imagen']) ?>" width="50" height="50" /></td>
                             <td>
-                                <a href="fomulario__productos_v2.php?id=<?= htmlspecialchars($producto['id']) ?>" class="btn btn-primary">Modificar</a>
+                                <a href="formulario_productos_v3.php?id=<?= htmlspecialchars($producto['id']) ?>" class="btn btn-primary">Modificar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

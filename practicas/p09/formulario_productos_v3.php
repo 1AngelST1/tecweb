@@ -18,7 +18,8 @@ if ($id > 0) {
     $producto = $result->fetch_assoc();
     $stmt->close();
 } else {
-    die('<script>alert("ID de producto no válido"); window.location.href="productos.php";</script>');
+    // Si el ID no es válido, redirigir al listado de productos
+    die('<script>alert("ID de producto no válido"); window.location.href="get_productos_xhtml_v2.php";</script>');
 }
 $link->close();
 ?>
@@ -33,9 +34,10 @@ $link->close();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+    
     <div class="container">
         <h1>Modificar Producto</h1>
-        <form method="post">
+        <form method="post" action="update_producto.php?id=<?= $_GET['id'] ?>">
             <fieldset>
                 <legend>Detalles del producto:</legend>
                 <div class="form-group">
@@ -69,7 +71,7 @@ $link->close();
             </fieldset>
             <p>
                 <input type="submit" value="Guardar Cambios" class="btn btn-success">
-                <a href="" class="btn btn-secondary">Cancelar</a>
+                <a href="get_productos_xhtml_v2.php" class="btn btn-secondary">Cancelar</a>
             </p>
         </form>
     </div>
