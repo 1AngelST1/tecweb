@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Registro de Producto</title>
+    <script>
+        function validarFormulario(event) {
+            event.preventDefault(); // Evitar envío automático
+            
+            let nombre = document.forms["productoForm"]["nombre"].value.trim();
+            let marca = document.forms["productoForm"]["marca"].value.trim();
+            let modelo = document.forms["productoForm"]["modelo"].value.trim();
+            let precio = parseFloat(document.forms["productoForm"]["precio"].value);
+            let detalles = document.forms["productoForm"]["detalles"].value.trim();
+            let unidades = parseInt(document.forms["productoForm"]["unidades"].value);
+            let imagen = document.forms["productoForm"]["imagen"].value.trim();
+            
+            if (!nombre || nombre.length >= 100) {
+                alert("El nombre es obligatorio y debe tener hasta 100 caracteres.");
+                return;
+            }
+            
+            if (!marca || marca.length >= 25) {
+                alert("La marca es obligatoria y debe tener hasta 50 caracteres.");
+                return;
+            }
+            
+            if (!modelo || modelo.length >= 25 || !/^[a-zA-Z0-9 ]+$/.test(modelo)) {
+                alert("El modelo es obligatorio, alfanumérico y de máximo 25 caracteres.");
+                return;
+            }
+            
+            if (isNaN(precio) || precio <= 99.99) {
+                alert("El precio debe ser mayor a 99.99.");
+                return;
+            }
+            
+            if (detalles.length >= 250) {
+                alert("Los detalles deben tener hasta 250 caracteres.");
+                return;
+            }
+            
+            if (isNaN(unidades) || unidades < 0) {
+                alert("Las unidades deben ser un número mayor o igual a 0.");
+                return;
+            }
+            
+            if (!imagen) {
+                document.forms["productoForm"]["imagen"].value = "img/default.png";
+            }
+            else
+            {
+                document.forms["productoForm"]["imagen"].value = "img/" + imagen;
+            }
+            
+            document.forms["productoForm"].submit();
+        }
+    </script>
+</head>
+<body>
+    <h2>Registrar Producto</h2>
+    <form name="productoForm" action="formulario.php" method="post" onsubmit="validarFormulario(event)">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required/><br/><br/>
+        
+        <label>Marca:</label>
+        <input type="text" name="marca" required/><br/><br/>
+        
+        <label>Modelo:</label>
+        <input type="text" name="modelo" required/><br/><br/>
+        
+        <label>Precio:</label>
+        <input type="number" name="precio" step="0.01" required/><br/><br/>
+        
+        <label>Detalles:</label>
+        <textarea name="detalles"></textarea><br/><br/>
+        
+        <label>Unidades:</label>
+        <input type="number" name="unidades" required/><br/><br/>
+        
+        <label>Nombre de la Imagen:</label>
+        <input type="text" name="imagen"/><br/><br/>
+        
+        <button type="submit">Registrar Producto</button>
+    </form>
+</body>
+</html>

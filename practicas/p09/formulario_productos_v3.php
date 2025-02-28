@@ -1,15 +1,10 @@
 <?php
-// Conectar a la base de datos
 $link = new mysqli('localhost', 'root', 'SA_toan_123', 'marketzone');
-
 if ($link->connect_errno) {
     die('<script>alert("Falló la conexión: '.$link->connect_error.'");</script>');
 }
 
-// Obtener el ID del producto
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-// Cargar datos del producto si se recibe un ID
 if ($id > 0) {
     $stmt = $link->prepare("SELECT * FROM productos WHERE id = ?");
     $stmt->bind_param("i", $id);
@@ -18,7 +13,6 @@ if ($id > 0) {
     $producto = $result->fetch_assoc();
     $stmt->close();
 } else {
-    // Si el ID no es válido, redirigir al listado de productos
     die('<script>alert("ID de producto no válido"); window.location.href="get_productos_xhtml_v2.php";</script>');
 }
 $link->close();
@@ -28,16 +22,15 @@ $link->close();
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="src/validacion.js" defer></script> 
 </head>
 <body>
-    
     <div class="container">
         <h1>Modificar Producto</h1>
-        <form method="post" action="update_producto.php?id=<?= $_GET['id'] ?>">
+        <form name="productoForm" method="post" action="update_producto.php?id=<?= $_GET['id'] ?>">
             <fieldset>
                 <legend>Detalles del producto:</legend>
                 <div class="form-group">
