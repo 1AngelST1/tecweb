@@ -1,15 +1,12 @@
 <?php
-// Conectar a la base de datos
 $link = new mysqli('localhost', 'root', 'SA_toan_123', 'marketzone');
 
 if ($link->connect_errno) {
-    die('<script>alert("Falló la conexión: '.$link->connect_error.'");</script>');
+    exit('<script>alert("Falló la conexión: '.$link->connect_error.'"); window.history.back();</script>');
 }
 
-// Obtener el ID del producto
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Cargar datos del producto si se recibe un ID
 if ($id > 0) {
     $stmt = $link->prepare("SELECT * FROM productos WHERE id = ?");
     $stmt->bind_param("i", $id);
@@ -18,26 +15,26 @@ if ($id > 0) {
     $producto = $result->fetch_assoc();
     $stmt->close();
 } else {
-    die('<script>alert("ID de producto no válido"); window.location.href="formulario_productos_v3.php";</script>');
+    exit('<script>alert("ID de producto no válido"); window.location.href="formulario_productos_v3.php";</script>');
 }
 
-// Si el formulario se envía, actualizar el producto
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
-    $marca = $_POST['marca'];
-    $modelo = $_POST['modelo'];
-    $precio = $_POST['precio'];
-    $detalles = $_POST['detalles'];
-    $unidades = $_POST['unidades'];
-    $imagen = $_POST['imagen'];
+    $nombre = trim(htmlspecialchars($_POST['nombre']));
+    $marca = trim(htmlspecialchars($_POST['marca']));
+    $modelo = trim(htmlspecialchars($_POST['modelo']));
+    $precio = floatval($_POST['precio']);
+    $detalles = trim(htmlspecialchars($_POST['detalles']));
+    $unidades = intval($_POST['unidades']);
+    $imagen = trim(htmlspecialchars($_POST['imagen']));
+    $eliminado = intval($_POST['eliminado']);
 
-    $stmt = $link->prepare("UPDATE productos SET nombre=?, marca=?, modelo=?, precio=?, detalles=?, unidades=?, imagen=? WHERE id=?");
-    $stmt->bind_param("sssdsisi", $nombre, $marca, $modelo, $precio, $detalles, $unidades, $imagen, $id);
+    $stmt = $link->prepare("UPDATE productos SET nombre=?, marca=?, modelo=?, precio=?, detalles=?, unidades=?, imagen=?, eliminado=? WHERE id=?");
+    $stmt->bind_param("sssdsisii", $nombre, $marca, $modelo, $precio, $detalles, $unidades, $imagen, $eliminado, $id);
 
     if ($stmt->execute()) {
         echo '<script>alert("Producto actualizado correctamente"); window.location.href="get_productos_xhtml_v2.php";</script>';
     } else {
-        echo '<script>alert("Error al actualizar el producto");</script>';
+        echo '<script>alert("Error al actualizar el producto: ' . $stmt->error . '");</script>';
     }
 
     $stmt->close();

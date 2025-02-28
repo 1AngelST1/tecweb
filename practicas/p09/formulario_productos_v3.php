@@ -61,6 +61,11 @@ $link->close();
                     <label>Nombre de la Imagen:</label>
                     <input type="text" name="imagen" class="form-control" value="<?= htmlspecialchars($producto['imagen']) ?>">
                 </div>
+                <div class="form-group">
+                    <label>elimindado:</label>
+                    <input type="number" name="eliminado" class="form-control" value="<?= htmlspecialchars($producto['eliminado']) ?>" required>
+
+                </div>
             </fieldset>
             <p>
                 <input type="submit" value="Guardar Cambios" class="btn btn-success">

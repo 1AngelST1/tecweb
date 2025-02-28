@@ -13,6 +13,7 @@ function validarFormulario(event) {
     let detalles = form["detalles"].value.trim();
     let unidades = parseInt(form["unidades"].value);
     let imagen = form["imagen"].value.trim();
+    let eliminado = parseInt(form["eliminado"].value);
 
     if (!nombre || nombre.length > 100) {
         alert("El nombre es obligatorio y debe tener hasta 100 caracteres.");
@@ -46,8 +47,14 @@ function validarFormulario(event) {
 
     if (!imagen) {
         form["imagen"].value = "img/default.png";
-    } else {
+    } else if (!imagen.startsWith("img/")) {
         form["imagen"].value = "img/" + imagen.trim();
+    }
+    
+
+    if (isNaN(eliminado) || (eliminado !== 0 && eliminado !== 1)) {
+        alert("El campo Eliminado debe ser 0 o 1.");
+        return;
     }
 
     form.submit(); // Envía el formulario si todas las validaciones pasan
