@@ -15,6 +15,9 @@ function validarFormulario(event) {
     let imagen = form["imagen"].value.trim();
     let eliminado = parseInt(form["eliminado"].value);
 
+    // Lista de marcas permitidas
+    let marcasPermitidas = ["Samsung", "Huawei", "sony"];
+
     if (!nombre || nombre.length > 100) {
         alert("El nombre es obligatorio y debe tener hasta 100 caracteres.");
         return;
@@ -22,6 +25,12 @@ function validarFormulario(event) {
 
     if (!marca || marca.length > 50) {
         alert("La marca es obligatoria y debe tener hasta 50 caracteres.");
+        return;
+    }
+
+    // Validar que la marca sea una de las permitidas
+    if (!marcasPermitidas.includes(marca)) {
+        alert("Marca no permitida. Seleccione Samsung, Huawei o Libro de pasta dura.");
         return;
     }
 
@@ -50,7 +59,6 @@ function validarFormulario(event) {
     } else if (!imagen.startsWith("img/")) {
         form["imagen"].value = "img/" + imagen.trim();
     }
-    
 
     if (isNaN(eliminado) || (eliminado !== 0 && eliminado !== 1)) {
         alert("El campo Eliminado debe ser 0 o 1.");

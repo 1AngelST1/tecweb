@@ -39,7 +39,11 @@ $link->close();
                 </div>
                 <div class="form-group">
                     <label>Marca:</label>
-                    <input type="text" name="marca" class="form-control" value="<?= htmlspecialchars($producto['marca']) ?>" required>
+                    <select name="marca" class="form-control" required>
+                        <option value="Samsung" <?= $producto['marca'] == 'Samsung' ? 'selected' : '' ?>>Samsung</option>
+                        <option value="Huawei" <?= $producto['marca'] == 'Huawei' ? 'selected' : '' ?>>Huawei</option>
+                        <option value="sony" <?= $producto['marca'] == 'sony' ? 'selected' : '' ?>>sony</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Modelo:</label>
@@ -62,9 +66,8 @@ $link->close();
                     <input type="text" name="imagen" class="form-control" value="<?= htmlspecialchars($producto['imagen']) ?>">
                 </div>
                 <div class="form-group">
-                    <label>elimindado:</label>
+                    <label>Eliminado:</label>
                     <input type="number" name="eliminado" class="form-control" value="<?= htmlspecialchars($producto['eliminado']) ?>" required>
-
                 </div>
             </fieldset>
             <p>

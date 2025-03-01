@@ -28,6 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen = trim(htmlspecialchars($_POST['imagen']));
     $eliminado = intval($_POST['eliminado']);
 
+    // Lista de marcas permitidas
+    $marcas_permitidas = ["Samsung", "Huawei", "sony"];
+    
+    if (!in_array($marca, $marcas_permitidas)) {
+        exit('<script>alert("Marca no permitida"); window.history.back();</script>');
+    }
+
     $stmt = $link->prepare("UPDATE productos SET nombre=?, marca=?, modelo=?, precio=?, detalles=?, unidades=?, imagen=?, eliminado=? WHERE id=?");
     $stmt->bind_param("sssdsisii", $nombre, $marca, $modelo, $precio, $detalles, $unidades, $imagen, $eliminado, $id);
 
