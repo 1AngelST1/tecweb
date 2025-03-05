@@ -5,7 +5,6 @@ include_once __DIR__.'/database.php';
 $data = array();
 
 // SE VERIFICA HABER RECIBIDO EL ID O EL TÉRMINO DE BÚSQUEDA
-
 if (isset($_POST['searchID'])) {
     $id = $_POST['searchID'];
     // SE REALIZA LA QUERY DE BÚSQUEDA POR ID
@@ -18,7 +17,6 @@ if (isset($_POST['searchID'])) {
     } else {
         die('Query Error: ' . mysqli_error($conexion));
     }
-    
 } elseif (isset($_POST['search'])) {
     $search = $_POST['search'];
     // SE REALIZA LA QUERY DE BÚSQUEDA UTILIZANDO LIKE
