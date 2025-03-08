@@ -21,6 +21,11 @@ $(document).ready(function () {
         buscarProducto();
     });
 
+    // Buscar producto mientras se teclea
+    $('#search').on('input', function () {
+        buscarProducto();
+    });
+
     // Agregar producto
     $('#add-product-form').submit(function (e) {
         e.preventDefault();
