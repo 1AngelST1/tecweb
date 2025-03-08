@@ -53,6 +53,7 @@ function listarProductos() {
                         <td>${producto.nombre}</td>
                         <td><ul>${descripcion}</ul></td>
                         <td>
+                            <button class="product-edit btn btn-primary">Editar</button>
                             <button class="product-delete btn btn-danger">Eliminar</button>
                         </td>
                     </tr>`;
@@ -82,6 +83,7 @@ function buscarProducto() {
                     <td>${producto.nombre}</td>
                     <td><ul>${descripcion}</ul></td>
                     <td>
+                        <button class="product-edit btn btn-primary">Editar</button>
                         <button class="product-delete btn btn-danger">Eliminar</button>
                     </td>
                 </tr>`;
@@ -96,23 +98,71 @@ function buscarProducto() {
 }
 
 function agregarProducto() {
-    let finalJSON = JSON.parse($('#description').val());
-    finalJSON['nombre'] = $('#name').val();
-    let productoJsonString = JSON.stringify(finalJSON, null, 2);
+    let name = $('#name').val().trim();
+    let description = $('#description').val().trim();
+
+    // Validaciones de los campos
+    if (name === "") {
+        alert("Error: El nombre del producto no puede estar vacío.");
+        return;
+    }
+
+    if (description === "") {
+        alert("Error: La descripción no puede estar vacía.");
+        return;
+    }
+
+    try {
+        var finalJSON = JSON.parse(description); 
+        // Validar que la descripción sea un JSON válido
+    } catch (e) {
+        alert("Error: La descripción no tiene un formato JSON válido.");
+        return;
+    }
+
+    // Validaciones de los campos del JSON
+    if (!finalJSON.precio || isNaN(finalJSON.precio) || finalJSON.precio <= 0) {
+        alert("Error: El precio debe ser un número mayor que 0.");
+        return;
+    }
+    if (!finalJSON.unidades || isNaN(finalJSON.unidades) || finalJSON.unidades <= 0) {
+        alert("Error: Las unidades deben ser un número mayor que 0.");
+        return;
+    }
+    if (!finalJSON.modelo || finalJSON.modelo.trim() === "") {
+        alert("Error: El modelo no puede estar vacío.");
+        return;
+    }
+    if (!finalJSON.marca || finalJSON.marca.trim() === "") {
+        alert("Error: La marca no puede estar vacía.");
+        return;
+    }
+    if (!finalJSON.detalles || finalJSON.detalles.trim() === "") {
+        alert("Error: Los detalles no pueden estar vacíos.");
+        return;
+    }
+    if (!finalJSON.imagen || finalJSON.imagen.trim() === "") {
+        alert("Error: La URL de la imagen no puede estar vacía.");
+        return;
+    }
+
+    finalJSON['nombre'] = name;
+    let id = $('#productId').val(); // Obtener el ID del producto
+    let url = id ? './backend/product-update.php' : './backend/product-add.php'; // Determinar si es una actualización o una inserción
+    let method = id ? 'PUT' : 'POST'; // Método HTTP correspondiente
 
     $.ajax({
-        url: './backend/product-add.php',
-        type: 'POST',
+        url: url,
+        type: method,
         contentType: 'application/json',
-        data: productoJsonString,
+        data: JSON.stringify({ id, ...finalJSON }),
         success: function (response) {
             let respuesta = JSON.parse(response);
             $('#product-result').addClass('d-block');
             $('#container').html(`
                 <li style="list-style: none;">status: ${respuesta.status}</li>
                 <li style="list-style: none;">message: ${respuesta.message}</li>`);
-            listarProductos();
-        }
+            listarProductos();}
     });
 }
 
@@ -128,4 +178,20 @@ $(document).on('click', '.product-delete', function () {
             listarProductos();
         });
     }
+});
+
+$(document).on('click', '.product-edit', function () {
+    let id = $(this).closest('tr').attr('productId');
+
+    $.get(`./backend/product-get.php?id=${id}`, function (data) {
+        let producto = JSON.parse(data);
+
+        // Cargar los datos en el formulario
+        $('#name').val(producto.nombre);
+        $('#description').val(JSON.stringify(producto, null, 2)); 
+        $('#productId').val(producto.id); // Guardar el ID para la actualización
+
+        // Cambiar el texto del botón para indicar que se actualizará un producto
+        $('#add-product-btn').text("Actualizar Producto");
+    });
 });
