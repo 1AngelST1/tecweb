@@ -190,6 +190,10 @@ $(document).ready(function(){
             
             // SE PONE LA BANDERA DE EDICIÓN EN true
             edit = true;
+
+            // cambia el texto del boton a "modificar producto"
+            $('#product-form').find('button[type="submit"]').text('Modificar Producto');
+
         });
         e.preventDefault();
     });    
