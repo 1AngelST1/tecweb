@@ -31,17 +31,37 @@
             <div class="card-body">
               <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
               <form id="product-form">
-                <div class="form-group">
-                  <input class="form-control" type="text" id="name" placeholder="Nombre de producto">
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" id="description" cols="30" rows="10" placeholder="JSON de producto"></textarea>
-                </div>
                 <input type="hidden" id="productId">
-                <button class="btn btn-primary btn-block text-center" type="submit">
-                  Agregar Producto
-                </button>
-              </form>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio</label>
+                    <input type="number" id="precio" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="unidades">Unidades</label>
+                    <input type="number" id="unidades" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="modelo">Modelo</label>
+                    <input type="text" id="modelo" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="marca">Marca</label>
+                    <input type="text" id="marca" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="detalles">Detalles</label>
+                    <input type="text" id="detalles" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <input type="text" id="imagen" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block text-center">Agregar Producto</button>
+            </form>
             </div>
           </div>
         </div>
