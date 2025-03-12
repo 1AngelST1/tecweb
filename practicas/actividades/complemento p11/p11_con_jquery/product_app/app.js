@@ -186,11 +186,20 @@ $(document).ready(function(){
 
     // Validar cada campo cada vez que el "foco" cambie de campo
     $('#product-form input').blur(function() {
+        let template_bar = '';
         if ($(this).val() === '') {
             $(this).addClass('is-invalid');
+            template_bar += `
+                <li style="list-style: none;">Error: El campo ${$(this).attr('id')} es requerido.</li>
+            `;
         } else {
             $(this).removeClass('is-invalid');
+            template_bar += `
+                <li style="list-style: none;">El campo ${$(this).attr('id')} es válido.</li>
+            `;
         }
+        $('#product-result').show();
+        $('#container').html(template_bar);
     });
 
     // funcion para menejar el envio del formulario
@@ -199,14 +208,16 @@ $(document).ready(function(){
 
             // Validar que los campos requeridos no sean vacíos
             let isValid = true;
+            let template_bar = '';
             $('#product-form input').each(function() {
                 if ($(this).val() === '') {
-                    $(this).addClass('is-invalid');
-                    isValid = false;
-                } else {
                     $(this).removeClass('is-invalid');
+                    template_bar += `
+                        <li style="list-style: none;">El campo ${$(this).attr('id')} es válido.</li>
+                    `;
                 }
             });
+
 
         // Crear objeto con los datos del formulario
         let postData = {
