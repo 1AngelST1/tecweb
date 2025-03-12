@@ -13,6 +13,7 @@ $(document).ready(function(){
     let edit = false;
 
     // Inicializar formulario con valores base
+    function inicializarFormulario(){
     $('#nombre').val(baseJSON.nombre);
     $('#precio').val(baseJSON.precio);
     $('#unidades').val(baseJSON.unidades);
@@ -20,7 +21,9 @@ $(document).ready(function(){
     $('#marca').val(baseJSON.marca);
     $('#detalles').val(baseJSON.detalles);
     $('#imagen').val(baseJSON.imagen);
+    }
 
+    inicializarFormulario();
     $('#product-result').hide();
     listarProductos();
 
@@ -202,21 +205,84 @@ $(document).ready(function(){
         $('#container').html(template_bar);
     });
 
-    // funcion para menejar el envio del formulario
+    // Validar nombres del producto al teclear opciones similares ( se tomo en base a la funcion serach)
+    $('#nombre').keyup(function() {
+        let search = $(this).val();
+        if (search) {
+            $.ajax({
+                url: './backend/product-search.php',
+                data: { search },
+                type: 'GET',
+                success: function(response) {
+                    if (!response.error) {
+                        const productos = JSON.parse(response);
+                        if (Object.keys(productos).length > 0) {
+                            let template = '';
+                            let templateTable = '';
+                            productos.forEach(producto => {
+                                template += `
+                                    <li>${producto.nombre}</li>
+                                `;
+                                let descripcion = `
+                                    <li>precio: ${producto.precio}</li>
+                                    <li>unidades: ${producto.unidades}</li>
+                                    <li>modelo: ${producto.modelo}</li>
+                                    <li>marca: ${producto.marca}</li>
+                                    <li>detalles: ${producto.detalles}</li>
+                                `;
+                                templateTable += `
+                                    <tr productId="${producto.id}">
+                                        <td>${producto.id}</td>
+                                        <td><a href="#" class="product-item">${producto.nombre}</a></td>
+                                        <td><ul>${descripcion}</ul></td>
+                                        <td>
+                                            <button class="product-delete btn btn-danger" onclick="eliminarProducto()">
+                                                Eliminar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                `;
+                            });
+                            $('#product-result').show();
+                            $('#container').html(template);
+                            $('#products').html(templateTable);
+                        } else {
+                            $('#product-result').hide();
+                            $('#products').html(''); // Limpiar la tabla si no hay resultados
+                        }
+                    }
+                }
+            });
+        } else {
+            $('#product-result').hide();
+            $('#products').html(''); // Limpiar la tabla si el campo de búsqueda está vacío
+        }
+    });
+
+    // funcion para manejar el envio del formulario
     $('#product-form').submit(e => {
         e.preventDefault();
 
-            // Validar que los campos requeridos no sean vacíos
-            let isValid = true;
-            let template_bar = '';
-            $('#product-form input').each(function() {
-                if ($(this).val() === '') {
-                    $(this).removeClass('is-invalid');
-                    template_bar += `
-                        <li style="list-style: none;">El campo ${$(this).attr('id')} es válido.</li>
-                    `;
-                }
-            });
+        // Validar que los campos requeridos no sean vacíos
+        let isValid = true;
+        let template_bar = '';
+        $('#product-form input').each(function() {
+            if ($(this).val() === '') {
+                $(this).removeClass('is-invalid');
+                template_bar += `
+                    <li style="list-style: none;">El campo ${$(this).attr('id')} es requerido.</li>
+                `;
+                isValid = false;
+            } else{
+                $(this).removeClass('is-invalid');
+            }
+        });
+
+        if (!isValid) {
+            $('#product-result').show();
+            $('#container').html(template_bar);
+            return;
+        }
 
 
         // Crear objeto con los datos del formulario
@@ -259,6 +325,7 @@ $(document).ready(function(){
             $('#product-form')[0].reset();
             $('#product-result').show();
             $('#container').html(template_bar);
+            
             /*
             // SE REINICIA EL FORMULARIO
             $('#name').val('');
@@ -267,13 +334,16 @@ $(document).ready(function(){
             $('#product-result').show();
             // SE INSERTA LA PLANTILLA PARA LA BARRA DE ESTADO
             $('#container').html(template_bar);
-            // SE LISTAN TODOS LOS PRODUCTOS*/
+            */
+            
+            // SE LISTAN TODOS LOS PRODUCTOS
             listarProductos();
 
             // cambia el texto del boton a "agregar producto"
             $('#product-form').find('button[type="submit"]').text('Agregar Producto');
             // SE REGRESA LA BANDERA DE EDICIÓN A false
             edit = false;
+            inicializarFormulario();
         });
     });
 
@@ -283,7 +353,26 @@ $(document).ready(function(){
             const element = $(this)[0].activeElement.parentElement.parentElement;
             const id = $(element).attr('productId');
             $.post('./backend/product-delete.php', {id}, (response) => {
-                $('#product-result').hide();
+                //actualiza barara de estatus
+                let respuesta = JSON.parse(response);
+                let template_bar = '';
+                if (respuesta.status === 'error') {
+                    // Mostrar mensaje de error
+                    template_bar += `
+                        <li style="list-style: none;">Error: ${respuesta.message}</li>
+                    `;
+                } else {
+                    // Mostrar mensaje de éxito
+                    template_bar += `
+                        <li style="list-style: none;">status: ${respuesta.status}</li>
+                        <li style="list-style: none;">message: ${respuesta.message}</li>
+                    `;
+                }
+
+                $('#product-result').show();
+                $('#container').html(template_bar);
+
+                //$('#product-result').hide();
                 listarProductos();
             });
         }
