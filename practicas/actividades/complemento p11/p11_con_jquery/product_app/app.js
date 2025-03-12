@@ -197,6 +197,17 @@ $(document).ready(function(){
     $('#product-form').submit(e => {
         e.preventDefault();
 
+            // Validar que los campos requeridos no sean vacíos
+            let isValid = true;
+            $('#product-form input').each(function() {
+                if ($(this).val() === '') {
+                    $(this).addClass('is-invalid');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+
         // Crear objeto con los datos del formulario
         let postData = {
             nombre: $('#nombre').val(),
