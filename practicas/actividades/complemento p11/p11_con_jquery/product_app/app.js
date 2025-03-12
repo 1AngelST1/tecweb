@@ -173,6 +173,26 @@ $(document).ready(function(){
         }
     });
 
+    /* validar cada campo cada vez que el "foco" sale de un campo
+    // prueba de validación de campo nombre
+    $('#nombre').blur(function() {
+        if($('#nombre').val() == '') {
+            $('#nombre').addClass('is-invalid');
+        }
+        else {
+            $('#nombre').removeClass('is-invalid');
+        }
+    });*/
+
+    // Validar cada campo cada vez que el "foco" cambie de campo
+    $('#product-form input').blur(function() {
+        if ($(this).val() === '') {
+            $(this).addClass('is-invalid');
+        } else {
+            $(this).removeClass('is-invalid');
+        }
+    });
+
     // funcion para menejar el envio del formulario
     $('#product-form').submit(e => {
         e.preventDefault();
@@ -235,6 +255,7 @@ $(document).ready(function(){
         });
     });
 
+    // funcion para eliminar productos
     $(document).on('click', '.product-delete', (e) => {
         if(confirm('¿Realmente deseas eliminar el producto?')) {
             const element = $(this)[0].activeElement.parentElement.parentElement;
@@ -247,7 +268,6 @@ $(document).ready(function(){
     });
 
     // funcion para editar productos
-
     $(document).on('click', '.product-item', (e) => {
 
         // SE OBTIENE EL ID DEL PRODUCTO A EDITAR
@@ -284,6 +304,7 @@ $(document).ready(function(){
             $('#product-form').find('button[type="submit"]').text('Modificar Producto');
 
         });
+
         e.preventDefault();
     });    
 });
