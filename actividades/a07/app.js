@@ -6,7 +6,11 @@ $(document).ready(function(){
 
     function listarProductos() {
         $.ajax({
+<<<<<<< HEAD
             url: './controller/product-list.php',
+=======
+            url: './backend/product-list.php',
+>>>>>>> dev
             type: 'GET',
             success: function(response) {
                 // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
@@ -50,7 +54,11 @@ $(document).ready(function(){
         if($('#search').val()) {
             let search = $('#search').val();
             $.ajax({
+<<<<<<< HEAD
                 url: './controller/product-search.php?search='+$('#search').val(),
+=======
+                url: './backend/product-search.php?search='+$('#search').val(),
+>>>>>>> dev
                 data: {search},
                 type: 'GET',
                 success: function (response) {
@@ -123,7 +131,11 @@ $(document).ready(function(){
         console.log(postData); // Depuración: Verificar los datos enviados
     
         // Determinar la URL según si es agregar o modificar
+<<<<<<< HEAD
         const url = edit === false ? './controller/product-add.php' : './backend/product-edit.php';
+=======
+        const url = edit === false ? './backend/product-add.php' : './backend/product-edit.php';
+>>>>>>> dev
     
         // Enviar los datos al backend
         $.ajax({
@@ -181,8 +193,12 @@ $(document).ready(function(){
             });
         }
     });
+<<<<<<< HEAD
 // editar producto
     // SE CAPTURA EL EVENTO CLICK EN EL ELEMENTO CON CLASE product-item
+=======
+
+>>>>>>> dev
     $(document).on('click', '.product-item', function(e) {
         const element = $(this)[0].closest('tr');
         const id = $(element).attr('productId');
@@ -226,7 +242,11 @@ $(document).ready(function(){
         }
     
         $.ajax({
+<<<<<<< HEAD
             url: "./controller/product-name.php",
+=======
+            url: "./backend/product-name.php",
+>>>>>>> dev
             type: "GET",
             data: { search: nombre },
             dataType: "json",

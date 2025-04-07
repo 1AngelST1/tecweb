@@ -1,0 +1,42 @@
+<CatalogoVOD>
+    <cuenta correo="prueba@gmail.com">
+        <perfiles>
+            <perfil usuario="ang1" idioma="Español" />
+            <perfil usuario="ang2" idioma="Inglés" />
+        </perfiles>
+    </cuenta>
+
+    <contenido>
+        <peliculas>
+            <genero nombre="Acción">
+                <titulo duracion="120 minutos">Explosión Final</titulo>
+                <titulo duracion="110 minutos">mision imposible</titulo>
+                <titulo duracion="105 minutos">Venganza Mortal</titulo>
+                <titulo duracion="130 minutos">Combate Total</titulo>
+            </genero>
+            
+            <genero nombre="Suspenso/terror">
+                <titulo duracion="90 minutos">"eso" (1990)</titulo>
+                <titulo duracion="95 minutos">El Conjuro</titulo>
+                <titulo duracion="100 minutos">El Exorcista</titulo>
+                <titulo duracion="98 minutos">La monja</titulo>
+            </genero>
+        </peliculas>
+
+        <programas>
+            <genero nombre="Documental">
+                <titulo duracion="50 minutos">Planeta Azul</titulo>
+                <titulo duracion="55 minutos">Misterios del Universo</titulo>
+                <titulo duracion="60 minutos">Historia del Arte</titulo>
+                <titulo duracion="52 minutos">La Naturaleza Viva</titulo>
+            </genero>
+            
+            <genero nombre="Drama">
+                <titulo duracion="45 minutos">Corazones Heridos</titulo>
+                <titulo duracion="48 minutos">Amor Prohibido</titulo>
+                <titulo duracion="50 minutos">Sombras del Pasado</titulo>
+                <titulo duracion="46 minutos">Destino Incierto</titulo>
+            </genero>
+        </programas>
+    </contenido>
+</CatalogoVOD>
