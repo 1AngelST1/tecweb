@@ -1,0 +1,210 @@
+<CatalogoVOD>
+    <cuenta>
+        
+        <correo>
+            prueba@gmail.com
+        </correo>
+
+        <perfiles>
+            
+            <perfil>
+
+                <usuario>
+                    ang1
+                </usuario>
+
+                <idioma>
+                    Español
+                </idioma>
+
+            </perfil>
+            
+            <perfil>
+
+                <usuario>
+                    ang2
+                </usuario>
+                
+                <idioma>   
+                    Inglés
+                </idioma>
+            
+            </perfil>
+
+        </perfiles>
+
+    </cuenta>
+
+    <contenido>
+
+        <peliculas>
+
+            <genero>
+
+                <nombre>
+                    Acción
+                </nombre>
+                
+                <titulo>
+                    <nombre>
+                        Explosión Final
+                    </nombre>
+                    
+                    <duracion>
+                        120 minutos
+                    </duracion>
+
+                </titulo>
+
+                <titulo>
+
+                    <nombre>
+                        mision imposible
+                    </nombre>
+                    
+                    <duracion>
+                        110 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>
+                        Venganza Mortal
+                    </nombre>
+
+                    <duracion>
+                        105 minutos
+                    </duracion>
+                </titulo>
+                
+                <titulo>
+                    <nombre>
+                        Combate Total
+                    </nombre>
+                    
+                    <duracion>
+                        130 minutos
+                    </duracion>
+                </titulo>
+            
+            </genero>
+            
+            <genero>
+                <nombre>
+                    Suspenso/terror
+                </nombre>
+
+                <titulo>
+                    <nombre>
+                        "eso" (1990) 
+                    </nombre>
+
+                    <duracion>
+                        90 minutos
+                    </duracion>
+                </titulo>
+                
+                <titulo>
+                    <nombre>
+                        El Conjuro
+                    </nombre>
+                    
+                    <duracion>
+                        95 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>
+                        El Exorcista
+                    </nombre>
+                    <duracion>
+                        100 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>
+                        La monja
+                    </nombre>
+                    <duracion>
+                        98 minutos
+                    </duracion>
+                </titulo>
+
+            </genero>
+
+        </peliculas>
+
+        <programas>
+            <genero>
+                <nombre>Documental</nombre>
+                <titulo>
+                    <nombre>
+                        Planeta Azul
+                    </nombre>
+                    <duracion>
+                        50 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Misterios del Universo</nombre>
+                    <duracion>
+                        55 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Historia del Arte</nombre>
+                    <duracion>
+                        60 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>La Naturaleza Viva</nombre>
+                    <duracion>
+                        52 minutos
+                    </duracion>
+                </titulo>
+            </genero>
+
+            <genero>
+                <nombre>Drama</nombre>
+                
+                <titulo>
+                    <nombre>Corazones Heridos</nombre>
+                    <duracion>
+                        45 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Amor Prohibido</nombre>
+                    <duracion>
+                        48 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Sombras del Pasado</nombre>
+                    <duracion>
+                        50 minutos
+                    </duracion>
+                </titulo>
+
+                <titulo>
+                    <nombre>Destino Incierto</nombre>
+                    <duracion>
+                        46 minutos
+                    </duracion>
+                </titulo>
+
+            </genero>
+
+        </programas>
+
+    </contenido>
+    
+</CatalogoVOD>
