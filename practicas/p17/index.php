@@ -87,7 +87,7 @@
     // Esta es la versión correcta para Slim 4  para test json (post)
     $app->post('/testjson', function (Request $request, Response $response, $args) {
         $reqPost = $request->getParsedBody(); // obtener el cuerpo de la petición POST
-        $data[0]["nombre"] = $reqPost ["nombre1"]; // crear un array de datos
+        $data[0]["nombre"] = $reqPost ["nombre1"]; // crear un array de datosce
         $data[0]["apellido"] = $reqPost ["apellidos1"]; // crear un array de datos
         $data[1]["nombre"] = $reqPost ["nombre2"]; // crear un array de datos
         $data[1]["apellido"] = $reqPost ["apellidos2"]; // crear un array de datos
