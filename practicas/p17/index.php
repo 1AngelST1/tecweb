@@ -51,7 +51,7 @@
         return $response; // devolver la respuesta
     });
 */
-    // Esta es la versión correcta para Slim 4
+    // Esta es la versión correcta para Slim 4  para formulario POST
     $app->post("/puebapost", function (Request $request, Response $response, $args) {
         $reqPost = $request->getParsedBody(); // obtener el cuerpo de la petición POST
         $val1 = $reqPost["valor1"]; // obtener el valor del campo valor1
@@ -60,7 +60,26 @@
         $response->getBody()->write("valores:" . $val1 . " " . $val2); // escribir en la respuesta
         return $response; // devolver la respuesta
     });
-
+/*
+    // esta es la version del video slim v3 por eso no funciona el siguiente código test json
+    $app->get('/testjson', function ( $request, $response , $args ) 
+    {
+        $data[0] ["nombre"] = "Angel"; // crear un array de datos
+        $data[0] ["apellido"] = "Sarmiento totolhua"; // crear un array de datos
+        $data[1] ["nombre"] = "Mariana"; // crear un array de datos
+        $data[1] ["apellido"] = "Perez Lopez"; // crear un array de datos
+        $response->write( json_encode($data, JSON_PRETTY_PRINT)); // convertir el array a JSON y escribir en la respuesta
+        return $response; // devolver la respuesta
+    });
+*/
+    // Esta es la versión correcta para Slim 4  para test json
+    $app->get('/testjson', function (Request $request, Response $response, $args) {
+        $data[0]["nombre"] = "Angel"; // crear un array de datos
+        $data[0]["apellido"] = "Sarmiento totolhua"; // crear un array de datos
+        $data[1]["nombre"] = "Mariana"; // crear un array de datos
+        $data[1]["apellido"] = "Perez Lopez"; // crear un array de datos
+        $response->getBody()->write(json_encode($data, JSON_PRETTY_PRINT)); // convertir el array a JSON y escribir en la respuesta
+        return $response; // devolver la respuesta
+    });
     $app->run(); // ejecutar el servidor web Slim 4
-
 ?>
